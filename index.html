@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Профит — студия фитнеса для мам в Перми</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: Arial, sans-serif; color: #1a1a1a; line-height: 1.6; }
+.container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+header { background: #fff; box-shadow: 0 2px 10px rgba(0,0,0,0.08); position: sticky; top: 0; z-index: 100; padding: 15px 0; }
+.header-inner { display: flex; justify-content: space-between; align-items: center; }
+.logo { display: flex; align-items: center; gap: 12px; }
+.logo-circle { width: 50px; height: 50px; background: #ffc107; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 900; color: #1a1a1a; font-size: 14px; }
+.logo h1 { font-size: 20px; }
+.logo p { font-size: 12px; color: #888; }
+nav a { margin: 0 15px; text-decoration: none; color: #333; font-weight: 500; font-size: 14px; }
+nav a:hover { color: #d99a00; }
+.header-phone { font-weight: 700; color: #1a1a1a; text-decoration: none; }
+.btn { display: inline-block; background: #ffc107; color: #1a1a1a; padding: 12px 28px; border-radius: 8px; text-decoration: none; font-weight: 700; border: none; cursor: pointer; font-size: 15px; transition: 0.3s; }
+.btn:hover { background: #e5ad00; transform: translateY(-2px); }
+.btn-outline { background: transparent; border: 2px solid #ffc107; color: #1a1a1a; }
+.btn-outline:hover { background: #ffc107; }
+.hero { background: linear-gradient(135deg, #ffc107 0%, #ffb300 100%); color: #1a1a1a; padding: 80px 0; position: relative; overflow: hidden; }
+.hero-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; position: relative; z-index: 1; }
+.hero h2 { font-size: 46px; font-weight: 900; line-height: 1.1; margin-bottom: 20px; }
+.hero h2 span { color: #fff; }
+.hero p { font-size: 18px; color: #333; margin-bottom: 30px; }
+.hero-buttons { display: flex; gap: 15px; flex-wrap: wrap; }
+.hero-buttons .btn { background: #1a1a1a; color: #ffc107; }
+.hero-buttons .btn:hover { background: #333; }
+.hero-buttons .btn-outline { background: transparent; border: 2px solid #1a1a1a; color: #1a1a1a; }
+.hero-buttons .btn-outline:hover { background: #1a1a1a; color: #ffc107; }
+.hero-stats { display: flex; gap: 30px; margin-top: 40px; }
+.hero-stats .num { font-size: 32px; font-weight: 900; color: #1a1a1a; }
+.hero-stats .label { font-size: 14px; color: #555; }
+.hero-photo { border-radius: 20px; overflow: hidden; height: 440px; background: #fff; display: flex; align-items: center; justify-content: center; }
+.hero-photo img { width: 100%; height: 100%; object-fit: contain; }
+section { padding: 80px 0; }
+.section-title { text-align: center; margin-bottom: 50px; }
+.section-title h2 { font-size: 36px; font-weight: 900; margin-bottom: 10px; }
+.section-title p { color: #666; font-size: 18px; }
+.about { background: #fff9e6; }
+.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; }
+.about-grid h3 { font-size: 28px; margin-bottom: 20px; }
+.about-grid p { margin-bottom: 15px; color: #555; font-size: 17px; }
+.about-features { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 30px; }
+.feature { background: #fff; padding: 20px; border-radius: 12px; box-shadow: 0 4px 15px rgba(255,193,7,0.15); }
+.feature .icon { font-size: 28px; margin-bottom: 10px; }
+.feature h4 { font-size: 16px; margin-bottom: 5px; }
+.feature p { font-size: 13px; color: #888; }
+.about-photo { border-radius: 20px; overflow: hidden; height: 450px; }
+.about-photo img { width: 100%; height: 100%; object-fit: cover; }
+.services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; }
+.service-card { background: #fff; border-radius: 16px; padding: 30px; box-shadow: 0 4px 20px rgba(0,0,0,0.06); transition: 0.3s; border-top: 4px solid #ffc107; }
+.service-card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(255,193,7,0.2); }
+.service-card .icon { font-size: 40px; margin-bottom: 15px; }
+.service-card h3 { font-size: 20px; margin-bottom: 10px; }
+.service-card p { color: #666; font-size: 15px; }
+.prices { background: #fff9e6; }
+.price-heading { text-align: center; margin: 40px 0 20px; font-size: 22px; }
+.price-heading:first-of-type { margin-top: 0; }
+.price-table { background: #fff; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.06); max-width: 800px; margin: 0 auto; }
+.price-table table { width: 100%; border-collapse: collapse; }
+.price-table th { background: #1a1a1a; color: #ffc107; padding: 18px; text-align: left; font-size: 16px; }
+.price-table td { padding: 15px 18px; border-bottom: 1px solid #eee; font-size: 15px; }
+.price-table tr:last-child td { border-bottom: none; }
+.price-table tr:hover { background: #fff9e6; }
+.price-table .price { font-weight: 700; color: #d99a00; font-size: 18px; }
+.price-note { text-align: center; color: #888; font-size: 14px; margin-top: 20px; }
+.trainers-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; }
+.trainer-card { background: #fff; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.06); }
+.trainer-photo { height: 320px; overflow: hidden; }
+.trainer-photo img { width: 100%; height: 100%; object-fit: cover; transition: 0.3s; }
+.trainer-card:hover .trainer-photo img { transform: scale(1.05); }
+.trainer-info { padding: 20px; text-align: center; }
+.trainer-info h4 { font-size: 17px; margin-bottom: 5px; }
+.trainer-info p { color: #d99a00; font-size: 14px; font-weight: 600; }
+.reviews { background: #fff; }
+.reviews-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; }
+.review-card { background: #fff9e6; border-radius: 16px; padding: 30px; box-shadow: 0 4px 20px rgba(255,193,7,0.1); }
+.review-card .stars { color: #ffc107; font-size: 18px; margin-bottom: 15px; }
+.review-card p { color: #555; font-size: 15px; margin-bottom: 15px; font-style: italic; }
+.review-card .author { color: #d99a00; font-weight: 700; font-size: 14px; }
+.gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; }
+.gallery-item { border-radius: 12px; overflow: hidden; height: 280px; }
+.gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: 0.3s; }
+.gallery-item:hover img { transform: scale(1.05); }
+.cta { background: linear-gradient(135deg, #ffc107 0%, #d99a00 100%); color: #1a1a1a; text-align: center; padding: 60px 0; }
+.cta h2 { font-size: 36px; font-weight: 900; margin-bottom: 15px; }
+.cta p { font-size: 18px; margin-bottom: 30px; }
+.cta .btn { background: #1a1a1a; color: #ffc107; }
+.cta .btn:hover { background: #333; }
+.contacts-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; }
+.contacts-grid h3 { font-size: 28px; margin-bottom: 25px; }
+.contact-item { display: flex; gap: 15px; margin-bottom: 20px; align-items: flex-start; }
+.contact-item .icon { font-size: 24px; }
+.contact-item h4 { font-size: 16px; margin-bottom: 3px; }
+.contact-item p { color: #666; font-size: 15px; }
+.contact-item a { color: #d99a00; text-decoration: none; font-weight: 600; }
+.contact-map { background: #f0f0f0; border-radius: 16px; height: 400px; display: flex; align-items: center; justify-content: center; color: #888; font-size: 18px; }
+footer { background: #1a1a1a; color: #bbb; padding: 30px 0; text-align: center; font-size: 14px; }
+footer a { color: #ffc107; text-decoration: none; }
+@media (max-width: 768px) {
+  .hero-inner, .about-grid, .contacts-grid { grid-template-columns: 1fr; }
+  .hero h2 { font-size: 30px; }
+  .services-grid, .gallery-grid, .reviews-grid, .trainers-grid { grid-template-columns: 1fr; }
+  nav { display: none; }
+  .hero-stats { flex-wrap: wrap; gap: 20px; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container header-inner">
+    <div class="logo">
+      <div class="logo-circle">PF</div>
+      <div><h1>Профит</h1><p>студия фитнеса для мам · Пермь</p></div>
+    </div>
+    <nav>
+      <a href="#about">О студии</a>
+      <a href="#services">Направления</a>
+      <a href="#prices">Цены</a>
+      <a href="#trainers">Тренеры</a>
+      <a href="#reviews">Отзывы</a>
+      <a href="#gallery">Зал</a>
+      <a href="#contacts">Контакты</a>
+    </nav>
+    <a href="tel:+79958606252" class="header-phone">+7 (995) 860-62-52</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="container hero-inner">
+    <div>
+      <h2>Ты на верном пути!<br><span>Фитнес для мам</span></h2>
+      <p>Студия «Профит» — это уютное пространство в Перми, где мамы могут позаботиться о себе. Групповые и персональные тренировки, растяжка, функционал и силовые. Тренеры, которые поддерживают.</p>
+      <div class="hero-buttons">
+        <a href="#contacts" class="btn">Записаться на тренировку</a>
+        <a href="tel:+79958606252" class="btn btn-outline">📞 Позвонить</a>
+      </div>
+      <div class="hero-stats">
+        <div><div class="num">3 800+</div><div class="label">подписчиков</div></div>
+        <div><div class="num">5,0</div><div class="label">рейтинг</div></div>
+        <div><div class="num">3 года+</div><div class="label">с нами ходят</div></div>
+      </div>
+    </div>
+    <div class="hero-photo"><img src="photo1.jpg" alt="ProFit"></div>
+  </div>
+</section>
+
+<section class="about" id="about">
+  <div class="container">
+    <div class="section-title">
+      <h2>О студии</h2>
+      <p>Фитнес-студия для мам — забота о себе без чувства вины</p>
+    </div>
+    <div class="about-grid">
+      <div>
+        <h3>Место, где мама отдыхает и становится сильнее</h3>
+        <p>«Профит» — это фитнес-студия для мам в Перми. У нас дружелюбная атмосфера, просторный зал, современное оборудование и тренеры, которые поддерживают на каждом этапе.</p>
+        <p>Много направлений групповых тренировок — есть из чего выбрать. Ходите с удовольствием, как наши постоянные клиентки, которые занимаются уже по 3 года.</p>
+        <div class="about-features">
+          <div class="feature"><div class="icon">💛</div><h4>Для мам</h4><p>Специально для вас</p></div>
+          <div class="feature"><div class="icon">🏡</div><h4>Уютно</h4><p>Близко к дому</p></div>
+          <div class="feature"><div class="icon">👯</div><h4>Дружелюбно</h4><p>Приветливый персонал</p></div>
+          <div class="feature"><div class="icon">💪</div><h4>Много направлений</h4><p>Функционал, растяжка, силовая</p></div>
+        </div>
+      </div>
+      <div class="about-photo"><img src="photo2.jpg" alt="Занятие в ProFit"></div>
+    </div>
+  </div>
+</section>
+
+<section id="services">
+  <div class="container">
+    <div class="section-title"><h2>Направления</h2><p>Выберите то, что подходит именно вам</p></div>
+    <div class="services-grid">
+      <div class="service-card"><div class="icon">🌸</div><h3>Растяжка</h3><p>Мягкая растяжка для гибкости и здоровья тела. Подходит для любого уровня.</p></div>
+      <div class="service-card"><div class="icon">🔥</div><h3>Функционал</h3><p>Функциональные тренировки для силы и выносливости. Энергично и весело.</p></div>
+      <div class="service-card"><div class="icon">💪</div><h3>Силовая</h3><p>Укрепление мышц и красивые формы. Индивидуальный подход к нагрузке.</p></div>
+      <div class="service-card"><div class="icon">👥</div><h3>Групповые тренировки</h3><p>Много направлений на выбор. Занятия в дружелюбной атмосфере.</p></div>
+      <div class="service-card"><div class="icon">🎯</div><h3>Персональные тренировки</h3><p>Индивидуальная программа с тренером под ваши цели.</p></div>
+      <div class="service-card"><div class="icon">📊</div><h3>Фитнес-диагностика</h3><p>Бесплатная диагностика — узнайте своё тело и составьте план.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="prices" id="prices">
+  <div class="container">
+    <div class="section-title"><h2>Цены</h2><p>Прозрачные цены без скрытых платежей</p></div>
+
+    <h3 class="price-heading">Групповые тренировки</h3>
+    <div class="price-table"><table>
+      <tr><th>Абонемент</th><th>Цена</th><th>Срок</th></tr>
+      <tr><td>Пробная тренировка</td><td class="price">300 ₽</td><td>при покупке абонемента — бесплатно</td></tr>
+      <tr><td>Разовое посещение</td><td class="price">800 ₽</td><td>—</td></tr>
+      <tr><td>4 тренировки</td><td class="price">2450 ₽</td><td>30 дней</td></tr>
+      <tr><td>8 тренировок</td><td class="price">4300 ₽</td><td>30 дней</td></tr>
+      <tr><td>12 тренировок</td><td class="price">6100 ₽</td><td>45 дней</td></tr>
+      <tr><td>24 тренировки</td><td class="price">10800 ₽</td><td>90 дней</td></tr>
+      <tr><td>Безлимит 1 месяц</td><td class="price">6500 ₽</td><td>30 дней</td></tr>
+      <tr><td>Безлимит 3 месяца</td><td class="price">15200 ₽</td><td>90 дней</td></tr>
+      <tr><td>Безлимит 6 месяцев</td><td class="price">26300 ₽</td><td>180 дней</td></tr>
+    </table></div>
+    <p class="price-note">Заморозка: 1 раз на 10 дней (для 3 мес.), 1 раз на 20 дней или 2 раза по 10 дней (для 6 мес.)</p>
+
+    <h3 class="price-heading">Персональные тренировки</h3>
+    <div class="price-table"><table>
+      <tr><th>Формат</th><th>Цена</th><th>Срок</th></tr>
+      <tr><td>Пробная тренировка</td><td class="price">900 ₽</td><td>—</td></tr>
+      <tr><td>Разовое занятие</td><td class="price">2000 ₽</td><td>—</td></tr>
+      <tr><td>10 тренировок</td><td class="price">15000 ₽</td><td>45 дней</td></tr>
+      <tr><td>20 тренировок</td><td class="price">26000 ₽</td><td>99 дней</td></tr>
+    </table></div>
+    <p class="price-note">Расписание и заморозки — по согласованию с администратором.</p>
+  </div>
+</section>
+
+<section id="trainers">
+  <div class="container">
+    <div class="section-title"><h2>Наши тренеры</h2><p>Специалисты, которые поддерживают на каждом этапе</p></div>
+    <div class="trainers-grid">
+      <div class="trainer-card">
+        <div class="trainer-photo"><img src="photo3.jpg" alt="Тренер Любовь"></div>
+        <div class="trainer-info"><h4>Любовь</h4><p>Групповые программы</p></div>
+      </div>
+      <div class="trainer-card">
+        <div class="trainer-photo"><img src="photo4.jpg" alt="Тренер Галина"></div>
+        <div class="trainer-info"><h4>Галина</h4><p>Групповые программы</p></div>
+      </div>
+      <div class="trainer-card">
+        <div class="trainer-photo"><img src="photo5.jpg" alt="Тренер Мария"></div>
+        <div class="trainer-info"><h4>Мария</h4><p>Функционал · Растяжка</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="reviews" id="reviews">
+  <div class="container">
+    <div class="section-title"><h2>Отзывы</h2><p>Что говорят наши ученицы</p></div>
+    <div class="reviews-grid">
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p>«Замечательный спортивный клуб! Хожу уже 3-ий год, хожу с удовольствием. Отличные тренера Любовь и Галина. Хожу на разные направления, для тренировок отличный просторный зал и снаряжения».</p>
+        <div class="author">— Постоянная клиентка</div>
+      </div>
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p>«Чудесное место! Уютно, удобное расположение близко к дому, приветливый персонал. Дружелюбная атмосфера, много различных направлений групповых тренировок, есть из чего выбирать занятия».</p>
+        <div class="author">— Ученица студии</div>
+      </div>
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p>«Очень нравится ходить на функционал и растяжку, купила абонемент на подольше, может наберусь сил и на силовую 🤭. Тренер Маша на Льва Шатрова очень располагает, поддерживает 🔥»</p>
+        <div class="author">— Ученица студии</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="gallery">
+  <div class="container">
+    <div class="section-title"><h2>Наш зал</h2><p>Просторный зал с современным оборудованием</p></div>
+    <div class="gallery-grid">
+      <div class="gallery-item"><img src="photo6.jpg" alt="Зал"></div>
+      <div class="gallery-item"><img src="photo7.jpg" alt="Занятие"></div>
+      <div class="gallery-item"><img src="photo8.jpg" alt="Тренировка"></div>
+      <div class="gallery-item"><img src="photo9.jpg" alt="Атмосфера"></div>
+      <div class="gallery-item"><img src="photo10.jpg" alt="Студия"></div>
+      <div class="gallery-item"><img src="photo2.jpg" alt="Занятие"></div>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="container">
+    <h2>Начни тренироваться сегодня</h2>
+    <p>Первое занятие — всего 300 ₽. Приходи и почувствуй разницу</p>
+    <a href="tel:+79958606252" class="btn">📞 Записаться</a>
+  </div>
+</section>
+
+<section id="contacts">
+  <div class="container">
+    <div class="section-title"><h2>Контакты</h2><p>Ждём вас в студии</p></div>
+    <div class="contacts-grid">
+      <div>
+        <h3>Студия «Профит»</h3>
+        <div class="contact-item"><div class="icon">📍</div><div><h4>Адрес</h4><p>г. Пермь, ул. Героев Хасана, 7А<br>(и ул. Грачёва, 19)</p></div></div>
+        <div class="contact-item"><div class="icon">📞</div><div><h4>Телефон</h4><p><a href="tel:+79958606252">+7 (995) 860-62-52</a></p></div></div>
+        <div class="contact-item"><div class="icon">🌐</div><div><h4>ВКонтакте</h4><p><a href="https://vk.com/profit_studiofit" target="_blank">vk.com/profit_studiofit</a></p></div></div>
+        <div class="contact-item"><div class="icon">👤</div><div><h4>Руководитель</h4><p>Ксения Свищёва</p></div></div>
+      </div>
+      <div class="contact-map">🗺️ Карта — ул. Героев Хасана, 7А, Пермь</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <p>© 2026 Студия «Профит» · Пермь, ул. Героев Хасана, 7А · <a href="tel:+79958606252">+7 (995) 860-62-52</a></p>
+  </div>
+</footer>
+
+</body>
+</html>
